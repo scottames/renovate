@@ -1,0 +1,36 @@
+---
+name: renovate-config-validator
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/renovate.json5
+      - "**.json5"
+  push:
+    branches:
+      - main
+    paths:
+      - .github/renovate.json5
+      - "**.json5"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate_renovate_config:
+    name: Validate Renovate Config
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - .github/renovate.json5
+          - default.json5
+          - managers.json5
+          - package-rules-groupings.json5
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        # yamllint disable-line rule:line-length
+      - uses: suzuki-shunsuke/github-action-renovate-config-validator@b54483862375f51910a60c4f498e927d4f3df466 # v1.0.1
+        with:
+          config_file_path: ${{ matrix.config }}

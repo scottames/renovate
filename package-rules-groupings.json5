@@ -1,0 +1,169 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  packageRules: [
+    {
+      matchPaths: [
+        'aqua.yaml',
+        'registry.yaml',
+        'aqua/aqua.yaml',
+        'aqua/registry.yaml',
+        '.aqua/aqua.yaml',
+        '.aqua/registry.yaml',
+      ],
+      groupName: '⬆️ aqua-packages',
+      commitMessageTopic: '⬆️ aqua-packages',
+      prPriority: -1,
+      automerge: true,
+    },
+    {
+      matchManagers: ['regex'],
+      matchDepNames: ['aquaproj/aqua'],
+      groupName: '⬆️ aqua-packages',
+    },
+    {
+      matchPackagePatterns: [
+        'dagger/dagger',
+      ],
+      groupName: '⬆️ dagger',
+      commitMessageTopic: '⬆️ dagger',
+      automerge: true,
+      matchUpdateTypes: [
+        'minor',
+        'patch',
+      ],
+    },
+    {
+      matchFileNames: [
+        'dagger/**',
+      ],
+      groupName: '⬆️ dagger'
+    },
+    {
+      matchManagers: ['regex'],
+      matchDepNames: ['dagger/dagger'],
+      groupName: '⬆️ dagger',
+    },
+    {
+      matchManagers: [
+        'dockerfile',
+        'docker-compose',
+      ],
+      groupName: 'docker',
+      commitMessageTopic: '⬆️ docker',
+      automerge: true,
+    },
+    {
+      matchManagers: [
+        'github-actions',
+      ],
+      groupName: 'github-actions',
+      commitMessageTopic: '⬆️ github-actions',
+      automerge: true,
+      prPriority: -1,
+      prBodyDefinitions: {
+        Package: '[{{{depName}}}](https://github.com/{{{depName}}})',
+        Change: '[`{{{displayFrom}}}` -> `{{{displayTo}}}`](https://github.com/{{{depName}}}/compare/{{{displayFrom}}}...{{{displayTo}}})',
+      },
+      prBodyColumns: [
+        'Package',
+        'Change',
+        'Type',
+        'Update',
+      ],
+    },
+    {
+      matchDatasources: ['golang-version'],
+      rangeStrategy: 'bump', // opt-in to golang version updates
+    },
+    {
+      matchPackagePatterns: [
+        'golang.org/x',
+      ],
+      groupName: '⬆️ go-x',
+      commitMessageTopic: '⬆️ golang.org/x packages',
+      automerge: true,
+      matchUpdateTypes: [
+        'minor',
+        'patch',
+      ],
+      prPriority: -1,
+    },
+    {
+      matchManagers: [
+        'gomod',
+      ],
+      description: 'reduce noise by grouping all gomod major changes together',
+      commitMessageTopic: '⬆️ gomod major',
+      groupName: 'gomod-major',
+      matchUpdateTypes: [
+        'major',
+      ],
+    },
+    {
+      matchManagers: [
+        'gomod',
+      ],
+      description: 'reduce noise by grouping all gomod patch, minor, and digest changes together',
+      commitMessageTopic: '⬆️ gomod patching',
+      groupName: 'gomod-patch-and-minor',
+      matchUpdateTypes: [
+        'patch',
+        'minor',
+        'digest',
+      ],
+    },
+    {
+      matchPackageNames: [
+        'kubernetes/kubectl',
+        'kubernetes/kubernetes',
+        'k8s.io/api',
+        'k8s.io/apimachinery',
+        'k8s.io/client-go',
+      ],
+      groupName: 'kubernetes',
+      commitMessageTopic: '⬆️ ☸️ kubernetes {{depName}}',
+    },
+    {
+      matchPaths: [
+        'magefiles',
+      ],
+      groupName: 'mage-tooling',
+      commitMessageTopic: '⬆️ 🤖 mage tooling',
+      automerge: true,
+      matchUpdateTypes: [
+        'minor',
+        'patch',
+      ],
+      prPriority: -1,
+    },
+    {
+      matchManagers: [
+        'nodenv',
+        'npm',
+      ],
+      groupName: 'npm',
+      commitMessageTopic: '⬆️ node, npm',
+      automerge: true,
+    },
+    {
+      matchManagers: [
+        'terraform',
+        'terraform-version',
+        'terragrunt',
+        'terragrunt-version',
+        'tflint-plugin',
+      ],
+      groupName: 'terraform',
+      commitMessageTopic: '⬆️ terraform',
+      automerge: true,
+    },
+    {
+      matchFileNames: [
+        '.trunk/**',
+      ],
+      automerge: true,
+      commitMessageTopic: '⬆️ trunk {{depName}}',
+      groupName: 'trunk',
+    },
+  ],
+}
