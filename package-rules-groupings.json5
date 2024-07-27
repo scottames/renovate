@@ -2,6 +2,11 @@
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   packageRules: [
     {
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    },
+    {
       matchPaths: [
         'aqua.yaml',
         'registry.yaml',
@@ -14,6 +19,14 @@
       commitMessageTopic: '⬆️ aqua-packages',
       prPriority: -1,
       automerge: true,
+    },
+    {
+      matchPackageNames: [
+        'aquaproj/aqua-installer',
+      ],
+      automerge: false,
+      commitMessageTopic: '⇡ aqua-installer',
+      groupName: 'aqua-installer',
     },
     {
       matchManagers: ['regex'],

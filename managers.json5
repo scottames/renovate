@@ -5,6 +5,8 @@
       customType: 'regex',
       fileMatch: [
         '^\\.github\\/workflows\\/([^\\/]+)\\.yaml$',
+        '\\.chezmoiexternal\\.toml(?:\\.tmpl)?$',
+        '\\.chezmoiscripts\\/.+\\.sh(?:\\.tmpl)?$',
         'Containerfile',
         'justfile',
       ],
@@ -24,6 +26,23 @@
         // same as above s/version/tag/
         "\\s+.*?[tT][aA][gG]\\s?[:=]+ +['\"]?(?<currentValue>[^'\" \\n]+)['\"]?\\s+.+ renovate:(\\sdatasource=(?<datasource>.*?))?\\sdepName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s",
       ],
+    },
+    {
+      customType: 'regex',
+      datasourceTemplate: 'npm',
+      depNameTemplate: 'trunk-io/launcher',
+      fileMatch: [
+        '\\.?aqua\\.ya?ml'
+      ],
+      matchStrings: [
+        ' +(?:version|\'version\'|"version") *: +(?<currentValue>[^\'" \\n]+) +# renovate: depName=trunk-io/launcher[ \\n]',
+        " +(?:version|'version'|\"version\") *: +'(?<currentValue>[^'\" \\n]+)' +# renovate: depName=trunk-io/launcher[ \\n]",
+        ' +(?:version|\'version\'|"version") *: +"(?<currentValue>[^\'" \\n]+)" +# renovate: depName=trunk-io/launcher[ \\n]',
+        ' +(?:name|\'name\'|"name") *: +trunk-io/launcher@(?<currentValue>[^\'" \\n]+)',
+        " +(?:name|'name'|\"name\") *: +'trunk-io/launcher@(?<currentValue>[^'\" \\n]+)'",
+        ' +(?:name|\'name\'|"name") *: +"trunk-io/launcher@(?<currentValue>[^\'" \\n]+)"',
+      ],
+      packageNameTemplate: '@trunkio/launcher',
     },
     {
       customType: 'regex',
