@@ -48,6 +48,7 @@
     'gomodUpdateImportPaths',
     'helmUpdateSubChartArchives',
   ],
+  ignoreDeps: ["trunk-io/launcher"],
   gomod: {
     enabled: true,
     commitMessageTopic: '⬆️ golang mod {{depName}}'
