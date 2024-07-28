@@ -50,6 +50,22 @@
       matchStrings: ["engineVersion\":\\s\"(?<currentValue>[^'\" \\n]+)\"\\s"],
       depNameTemplate: 'dagger/dagger',
       datasourceTemplate: 'github-releases'
+    },
+    {
+      customType: 'regex',
+      fileMatch: ['trunk.yaml'],
+      matchStrings: [
+        // Linters
+        //   above
+        "\\n\\s*#\\srenovate:(\\sdatasource=(?<datasource>.*?))?\\sdepName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s+-.+@(?<currentValue>[^\\'\" \\n]+)",
+        //   in-line
+        "\\s+-.+@(?<currentValue>[^\\'\" \\n]+)\\s#\\srenovate:(\\sdatasource=(?<datasource>.*?))?\\sdepName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s",
+        // CLI / Plugins
+        //   above
+        "\\n\\s*#\\srenovate:(\\sdatasource=(?<datasource>.*?))?\\sdepName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s\\s+-?\\s(ref|version):(\\s|\"|')(?<currentValue>[^\\'\" \\n]+)(\\s|\"|')",
+        //   in-line
+        "\\s+-?\\s(ref|version):\\s(?<currentValue>[^\\'\" \\n]+)\\s#\\srenovate:(\\sdatasource=(?<datasource>.*?))?\\sdepName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s",
+      ],
     }
   ],
 }
