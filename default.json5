@@ -48,14 +48,13 @@
     'gomodUpdateImportPaths',
     'helmUpdateSubChartArchives',
   ],
-  ignoreDeps: ["trunk-io/launcher"],
+  ignoreDeps: ['trunk-io/launcher'],
+  ignorePaths: [
+    '**/.dagger/**', // let dagger handle module deps
+  ],
   gomod: {
     enabled: true,
     commitMessageTopic: '⬆️ golang mod {{depName}}'
-  },
-  docker: {
-    enabled: true,
-    commitMessageTopic: '⬆️ docker 🐳 {{depName}}'
   },
   vulnerabilityAlerts: {
     enabled: true,
