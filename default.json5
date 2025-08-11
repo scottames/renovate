@@ -5,8 +5,8 @@
     'github>scottames/renovate:package-rules-groupings.json5', // packageRules
 
     // https://github.com/aquaproj/aqua-renovate-config/blob/main/default.json
-    'github>aquaproj/aqua-renovate-config#2.3.1',
-    "github>aquaproj/aqua-renovate-config:aqua-renovate-config#2.8.0(default\\.json5)",
+    'github>aquaproj/aqua-renovate-config#2.8.2',
+    "github>aquaproj/aqua-renovate-config:aqua-renovate-config#2.8.2(default\\.json5)",
 
     'config:best-practices', // https://docs.renovatebot.com/presets-config/#configbest-practices
     // includes:
