@@ -7,7 +7,7 @@
       "automerge": true
     },
     {
-      matchPaths: [
+      matchFileNames: [
         'aqua.yaml',
         'registry.yaml',
         'aqua/aqua.yaml',
@@ -29,12 +29,12 @@
       groupName: 'aqua-installer',
     },
     {
-      matchManagers: ['regex'],
+      matchManagers: ['custom.regex'],
       matchDepNames: ['aquaproj/aqua'],
       groupName: '⬆️ aqua-packages',
     },
     {
-      matchPackagePatterns: [
+      matchPackageNames: [
         'dagger/dagger',
       ],
       groupName: '⬆️ dagger',
@@ -52,9 +52,15 @@
       groupName: '⬆️ dagger'
     },
     {
-      matchManagers: ['regex'],
+      matchManagers: ['custom.regex'],
       matchDepNames: ['dagger/dagger'],
       groupName: '⬆️ dagger',
+    },
+    {
+      matchCategories: ["docker"],
+      automerge: true,
+      commitMessageTopic: "⬆️ docker 🐳 {{depName}}",
+      groupName: 'docker',
     },
     {
       matchManagers: [
@@ -89,7 +95,7 @@
       rangeStrategy: 'bump', // opt-in to golang version updates
     },
     {
-      matchPackagePatterns: [
+      matchPackageNames: [
         'golang.org/x',
       ],
       groupName: '⬆️ go-x',
@@ -135,19 +141,6 @@
       ],
       groupName: 'kubernetes',
       commitMessageTopic: '⬆️ ☸️ kubernetes {{depName}}',
-    },
-    {
-      matchPaths: [
-        'magefiles',
-      ],
-      groupName: 'mage-tooling',
-      commitMessageTopic: '⬆️ 🤖 mage tooling',
-      automerge: true,
-      matchUpdateTypes: [
-        'minor',
-        'patch',
-      ],
-      prPriority: -1,
     },
     {
       matchManagers: [
