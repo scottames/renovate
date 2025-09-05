@@ -56,6 +56,10 @@
     enabled: true,
     commitMessageTopic: '⬆️ golang mod {{depName}}'
   },
+  nix: {
+    enabled: true,
+    commitMessageTopic: '⬆️ nix {{depName}}'
+  },
   vulnerabilityAlerts: {
     enabled: true,
     labels: [
