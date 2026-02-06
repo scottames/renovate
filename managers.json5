@@ -3,13 +3,13 @@
   customManagers: [
     {
       customType: 'regex',
-      fileMatch: [
-        "^\\.github\\/workflows\\/([^\\/]+)\\.yaml$",
-        "^home\\/\\.chezmoiscripts\\/.+\\.sh(?:\\.tmpl)?$",
-        "^home\\/\\.chezmoiexternal\\.toml(?:\\.tmpl)?$",
-        "Containerfile",
-        "Dockerfile",
-        "justfile",
+      managerFilePatterns: [
+        "/^\\.github\\/workflows\\/([^\\/]+)\\.yaml$/",
+        "/^home\\/\\.chezmoiscripts\\/.+\\.sh(?:\\.tmpl)?$/",
+        "/^home\\/\\.chezmoiexternal\\.toml(?:\\.tmpl)?$/",
+        "/Containerfile/",
+        "/Dockerfile/",
+        "/justfile/",
       ],
       matchStrings: [
         // - order: datasource (optional), depName, versioning (optional)
@@ -30,14 +30,14 @@
     },
     {
       customType: 'regex',
-      fileMatch: ['dagger.json'],
+      managerFilePatterns: ['/dagger.json/'],
       matchStrings: ["engineVersion\":\\s\"(?<currentValue>[^'\" \\n]+)\"\\s"],
       depNameTemplate: 'dagger/dagger',
       datasourceTemplate: 'github-releases'
     },
     {
       customType: 'regex',
-      fileMatch: ['trunk.yaml'],
+      managerFilePatterns: ['/trunk.yaml/'],
       matchStrings: [
         // Linters
         //   above
