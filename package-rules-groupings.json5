@@ -7,6 +7,10 @@
       "automerge": true
     },
     {
+      matchUpdateTypes: ['lockFileMaintenance'],
+      automerge: true,
+    },
+    {
       matchFileNames: [
         'aqua.yaml',
         'registry.yaml',
