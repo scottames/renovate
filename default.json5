@@ -34,6 +34,10 @@
     'dependencies',
   ],
   platformAutomerge: true,
+  // https://docs.renovatebot.com/key-concepts/minimum-release-age/
+  internalChecksFilter: 'strict',
+  minimumReleaseAge: '4 days',
+  minimumReleaseAgeBehaviour: 'timestamp-required',
   pruneStaleBranches: true,
   rebaseWhen: 'behind-base-branch',
   schedule: 'after 4pm on thursday',
